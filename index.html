@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For You</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+
+<!-- =========================
+     LOCK SCREEN
+========================= -->
+<section id="lockscreen" class="center">
+
+  <div class="card">
+
+    <h1>Private Page</h1>
+
+    <p>
+      This little space is created only for<br>
+      <strong>Khadafi Leigh</strong>
+    </p>
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Enter password"
+      autocomplete="off"
+      onkeydown="if(event.key==='Enter'){checkPassword()}"
+    />
+
+    <button onclick="checkPassword()">Enter</button>
+
+    <small id="error" style="margin-top:8px; opacity:.8;"></small>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     MAIN MENU (FOR YOU)
+========================= -->
+<section id="menu" class="center cream" style="display:none;">
+
+  <div class="card">
+
+    <h1>For You</h1>
+
+    <p style="opacity:.85; margin-bottom:10px;">
+      A small place filled with memories,
+      words, and moments just for us.
+    </p>
+
+    <div class="menu-buttons">
+      <a href="about.html" class="reveal">About You</a>
+      <a href="timeline.html" class="reveal">Our Memories</a>
+      <a href="gallery.html" class="reveal">Moments</a>
+      <a href="letter.html" class="reveal">A Letter</a>
+
+      <!-- NEW BACK BUTTON -->
+      <button onclick="goBackLock()" class="back-btn">
+        ← Back to Lock
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<script src="script.js"></script>
+
+
+<!-- =========================
+     EXTRA JS (BACK FUNCTION)
+========================= -->
+<script>
+function goBackLock(){
+  const lock = document.getElementById("lockscreen");
+  const menu = document.getElementById("menu");
+  const pass = document.getElementById("password");
+  const error = document.getElementById("error");
+
+  menu.style.display = "none";
+  lock.style.display = "flex";
+
+  pass.value = "";
+  error.innerText = "";
+
+  setTimeout(() => pass.focus(), 200);
+}
+</script>
+
+</body>
+</html>

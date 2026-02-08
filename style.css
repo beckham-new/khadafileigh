@@ -1,0 +1,274 @@
+/* =========================
+   GOOGLE FONTS
+========================= */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap');
+
+
+/* =========================
+   VARIABLES
+========================= */
+:root{
+  --wine:#4E0000;
+  --wine-soft:#7a1f1f;
+  --brown:#3b2b25;
+  --gold:#C6A969;
+
+  --glass:rgba(255,255,255,.10);
+  --glass-border:rgba(255,255,255,.25);
+
+  --text:#f5f5f5;
+}
+
+
+/* =========================
+   RESET
+========================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+
+/* =========================
+   BODY
+========================= */
+body{
+  font-family:'Libre Baskerville', serif;
+  color:var(--text);
+  overflow-x:hidden;
+
+  opacity:0;
+  animation:fadeIn 1s ease forwards;
+}
+
+
+/* =========================
+   GLOBAL LIGHT VIGNETTE
+========================= */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+
+  background:
+    radial-gradient(circle at center,
+      rgba(255,255,255,.05),
+      rgba(0,0,0,.8)
+    );
+
+  pointer-events:none;
+  z-index:-2;
+}
+
+
+/* =================================================
+   🔥 LOCKSCREEN PHOTO BACKGROUND (FIXED VERSION)
+================================================= */
+#lockscreen{
+  position:relative;
+
+  background:url("assets/bg.jpg") center/cover no-repeat;
+}
+
+/* dark overlay */
+#lockscreen::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:rgba(0,0,0,.55);
+
+  backdrop-filter: blur(6px);
+
+  z-index:0;   /* 🔥 penting */
+}
+
+/* supaya card di atas overlay */
+#lockscreen .card{
+  position:relative;
+  z-index:2;
+}
+
+
+/* =========================
+   PAGE BACKGROUNDS
+========================= */
+.cream{
+  background:linear-gradient(140deg,var(--wine),var(--wine-soft));
+}
+
+.brown{
+  background:linear-gradient(140deg,#3b2b25,#5a4237);
+}
+
+
+/* =========================
+   LAYOUT
+========================= */
+.center,
+.page{
+  min-height:100vh;
+
+  padding:70px 26px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+
+  text-align:center;
+}
+
+
+/* =========================
+   GLASS CARD (PREMIUM)
+========================= */
+.card{
+  background:var(--glass);
+
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+
+  border:1px solid var(--glass-border);
+
+  border-radius:30px;
+
+  padding:55px 45px;
+
+  width:min(92%,440px);
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.7);
+
+  animation:floatIn 1s ease;
+}
+
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+h1{
+  font-family:'Cormorant Garamond', serif;
+  letter-spacing:2px;
+
+  font-size:clamp(40px,7vw,70px);
+
+  margin-bottom:14px;
+
+  text-shadow:0 10px 30px rgba(255,255,255,.15);
+}
+
+p{
+  font-size:clamp(15px,3.5vw,18px);
+  line-height:2.1;
+  opacity:.92;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+button,
+.menu-buttons a{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+
+  padding:15px 36px;
+  border-radius:18px;
+
+  color:white;
+  text-decoration:none;
+
+  font-family:'Cormorant Garamond', serif;
+  letter-spacing:1.6px;
+
+  transition:.35s ease;
+}
+
+button:hover,
+.menu-buttons a:hover{
+  background:var(--gold);
+  color:#1a1a1a;
+
+  transform:translateY(-4px);
+
+  box-shadow:0 18px 40px rgba(0,0,0,.45);
+}
+
+
+/* =========================
+   INPUT
+========================= */
+input{
+  padding:14px;
+  border-radius:14px;
+
+  width:100%;
+  text-align:center;
+
+  background:rgba(255,255,255,.18);
+  color:white;
+
+  border:none;
+  outline:none;
+}
+
+input:focus{
+  box-shadow:0 0 0 2px var(--gold);
+}
+
+
+/* =========================
+   MENU STACK
+========================= */
+.menu-buttons{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  width:100%;
+  margin-top:20px;
+}
+
+
+/* =========================
+   PAGE TRANSITION
+========================= */
+body.fade-out{
+  opacity:0;
+  transition:.6s ease;
+}
+
+@keyframes fadeIn{
+  to{opacity:1}
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes floatIn{
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+@media(max-width:480px){
+  .card{
+    padding:40px 25px;
+  }
+
+  button,
+  .menu-buttons a{
+    width:100%;
+  }
+}
